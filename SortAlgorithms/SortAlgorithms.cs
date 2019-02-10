@@ -100,57 +100,6 @@ namespace ExperimentsOnSortAlgorithms
 
             return isOrdered;
         }
-
-        public int[] CreateVector()
-        {
-            int[] indexV = { 10, 100, 1000, 10000, 100000 };
-
-            Random rnd = new Random();
-            int index = rnd.Next(0, 4);
-            int[] vector = new int[indexV[index]];
-
-            Random rnd2 = new Random();
-            int value = 0;
-
-            for (int i = 0; i < vector.Length; i++)
-            {
-                value = rnd2.Next(0, indexV[index]);
-                vector[i] = value;
-            }
-
-            return vector;
-
-
-        }
-
-        public bool DescendingOrder(int[] vector)
-        {
-            bool isOrdered = true;
-            int last = vector[0];
-
-            for (int i = 1; i < vector.Length; i++)
-            {
-                if (vector[i] > last) isOrdered = false;
-                last = vector[i];
-            }
-
-            return isOrdered;
-        }
-
-        public bool AscendingOrder(int[] vector)
-        {
-            bool isOrdered = true;
-            int last = vector[0];
-
-            for (int i = 1; i < vector.Length; i++)
-            {
-                if (vector[i] < last) isOrdered = false;
-                last = vector[i];
-            }
-
-            return isOrdered;
-        }
-
         public static void Main(String[] args)
         {
 
