@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ExperimentsOnSortAlgorithms
 {
-    class SortAlgorithms
+    public class SortAlgorithms
     {
 
-        public static void BubbleSort(int[] arr)
+        public void BubbleSort(int[] arr)
         {
 
 
@@ -31,7 +31,7 @@ namespace ExperimentsOnSortAlgorithms
         }
 
 
-        public static void SelectionSort(int[] ar)
+        public void SelectionSort(int[] ar)
         {
             //int[] ar = { 5, 3, 7, 2 };
             int n = ar.Length;
@@ -100,20 +100,20 @@ namespace ExperimentsOnSortAlgorithms
 
             return isOrdered;
         }
-        public static void Main(String[] args)
-        {
+		/*public static void Main(String[] args)
+		{
+			int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-            int[] arr = { 800, 11, 50, 771, 649, 770, 240, 9 };
-            ////BubbleSort(arr);
-            //for (int i = 0; i < arr.Length; i++)
-            //Console.Write(arr[i] + " ");
+			int[] arr2 = { 9, 1, 2, 8, 3, 7, 4, 6, 5, 10 };
+			SortAlgorithms sa = new SortAlgorithms();
+			sa.BubbleSort(arr2);
+			for (int z = 0; z < arr2.Length; z++)
+			{
+				Console.WriteLine(arr2[z] + " ");
+			}
+			Console.ReadKey();
+		}*/
 
-            SelectionSort(arr);
-            for (int i = 0; i < arr.Length; i++)
-                Console.Write(arr[i] + " ");
-            Console.ReadKey();
-        }
 
-
-    }
+	}
 }
