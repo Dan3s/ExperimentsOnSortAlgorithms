@@ -1,4 +1,4 @@
-﻿using SortAlgorithms;
+using SortAlgorithms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -130,29 +130,50 @@ namespace ExperimentsOnSortAlgorithms
 			int[] array = new int[tamañoArreglo];
 			Random rnd2 = new Random();
 			int value = 0;
-			for (int i = 0; i < array.Length; i++)
-			{
-				value = rnd2.Next(0, tamañoArreglo);
-				array[i] = value;
-			}
 
-			//-------------------------------------------------
-			//Ordena el arreglo de acuerdo a ordenArreglo
-			//-------------------------------------------------
-			if (ordenArreglo.Equals(ORDEN_ASCENDENTE, StringComparison.InvariantCultureIgnoreCase))
-			{
-				Array.Sort(array);
-			}
-			else if (ordenArreglo.Equals(ORDEN_DESCENDENTE, StringComparison.InvariantCultureIgnoreCase))
-			{
-				Array.Sort(array);
-				Array.Reverse(array);
-			}
+            if (ordenArreglo.Equals(ORDEN_ASCENDENTE, StringComparison.InvariantCultureIgnoreCase)) {
 
-			//---------------------------------------------------------
-			//Ordenamiento por el algoritmo escogido y toma de datos
-			//---------------------------------------------------------
-			double tiempo = 0;
+			    for (int i = 0; i < array.Length; i++)
+			    {
+                    array[i] = i;
+                }
+
+            }else if (ordenArreglo.Equals(ORDEN_DESCENDENTE, StringComparison.InvariantCultureIgnoreCase)) {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array[i] = array.Length - i;
+
+                }
+            }
+            else {
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    value = rnd2.Next(0, tamañoArreglo);
+			        array[i] = value;
+                }
+            }
+
+
+
+
+            //-------------------------------------------------
+            //Ordena el arreglo de acuerdo a ordenArreglo
+            //-------------------------------------------------
+            //if (ordenArreglo.Equals(ORDEN_ASCENDENTE, StringComparison.InvariantCultureIgnoreCase))
+            //{
+            //    Array.Sort(array);
+            //}
+            //else if (ordenArreglo.Equals(ORDEN_DESCENDENTE, StringComparison.InvariantCultureIgnoreCase))
+            //{
+            //    Array.Sort(array);
+            //    Array.Reverse(array);
+            //}
+
+            //---------------------------------------------------------
+            //Ordenamiento por el algoritmo escogido y toma de datos
+            //---------------------------------------------------------
+            double tiempo = 0;
 			if (algoritmoDeOrden.Equals(ORDEN_POR_BURBUJA, StringComparison.InvariantCultureIgnoreCase))
 			{
 				TimeSpan stop;
@@ -214,15 +235,13 @@ namespace ExperimentsOnSortAlgorithms
 
             string[] types = { ORDEN_ASCENDENTE, ORDEN_DESCENDENTE, ORDEN_ALEATORIO};
             int aux = 0;
-            for (int i = 1; i<=5; i++) {
-               
+            for (int i = 1; i<=8; i++) {
                 for (int j = 0; j < 3; j++)
                 {
                     Treatment treatment = new Treatment(types[j], (int)(Math.Pow((double)10,(double)i)));
                     BasicTreatment[aux] = treatment;
                     aux++;
                 }
-
             }
 
         }
@@ -231,7 +250,7 @@ namespace ExperimentsOnSortAlgorithms
             initializeBasicTreatment();
             //repeticiones para burbuja
             for (int i = 0; i<BasicTreatment.Length; i++) {
-                for (int j = 0; j < 15; j++) {
+                for (int j = 0; j < 10; j++) {
                     DefineProof(BasicTreatment[i].Size,BasicTreatment[i].Order,ram, ORDEN_POR_BURBUJA);
                 }
             }
@@ -239,7 +258,7 @@ namespace ExperimentsOnSortAlgorithms
             //repeticiones para seleccion 
             for (int i = 0; i<BasicTreatment.Length; i++) {
 
-                for (int j = 0; j < 15; j++)
+                for (int j = 0; j < 10; j++)
                 {
                     DefineProof(BasicTreatment[i].Size, BasicTreatment[i].Order, ram, ORDEN_POR_SELECCION);
                 }
