@@ -231,7 +231,7 @@ namespace ExperimentsOnSortAlgorithms
         public void initializeBasicTreatment() {
 
             //Se encarga de inicializar 15 tratamientos basicos de donde se deriban los otros
-            BasicTreatment = new Treatment[15];
+            BasicTreatment = new Treatment[24];
 
             string[] types = { ORDEN_ASCENDENTE, ORDEN_DESCENDENTE, ORDEN_ALEATORIO};
             int aux = 0;
