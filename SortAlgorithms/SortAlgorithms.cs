@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SortAlgorithms;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,9 +15,13 @@ namespace ExperimentsOnSortAlgorithms
 		public const String ORDEN_ALEATORIO = "Aleatorio";
 
 		public const String ORDEN_POR_BURBUJA = "Burbuja";
+        public const String ORDEN_POR_SELECCION = "Seleccion";
 
+        private Treatment[] basicTreatment;
 
-		public void BubbleSort(int[] arr)
+        internal Treatment[] BasicTreatment { get => basicTreatment; set => basicTreatment = value; }
+
+        public void BubbleSort(int[] arr)
 		{
 			int temp = 0;
 			for (int write = 0; write < arr.Length; write++)
@@ -201,7 +206,51 @@ namespace ExperimentsOnSortAlgorithms
 			}*/
 		}
 
-		public static void Main(String[] args)
+
+        public void initializeBasicTreatment() {
+
+            //Se encarga de inicializar 15 tratamientos basicos de donde se deriban los otros
+            BasicTreatment = new Treatment[15];
+
+            string[] types = { ORDEN_ASCENDENTE, ORDEN_DESCENDENTE, ORDEN_ALEATORIO};
+            int aux = 0;
+            for (int i = 1; i<=5; i++) {
+               
+                for (int j = 0; j < 3; j++)
+                {
+                    Treatment treatment = new Treatment(types[j], (int)(Math.Pow((double)10,(double)i)));
+                    BasicTreatment[aux] = treatment;
+                    aux++;
+                }
+
+            }
+
+        }
+
+        public void repetitions(String ram) {
+            initializeBasicTreatment();
+            //repeticiones para burbuja
+            for (int i = 0; i<BasicTreatment.Length; i++) {
+                for (int j = 0; j < 15; j++) {
+                    DefineProof(BasicTreatment[i].Size,BasicTreatment[i].Order,ram, ORDEN_POR_BURBUJA);
+                }
+            }
+
+            //repeticiones para seleccion 
+            for (int i = 0; i<BasicTreatment.Length; i++) {
+
+                for (int j = 0; j < 15; j++)
+                {
+                    DefineProof(BasicTreatment[i].Size, BasicTreatment[i].Order, ram, ORDEN_POR_SELECCION);
+                }
+            }
+
+
+        }
+
+
+
+        public static void Main(String[] args)
 		{
 			/*int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -215,8 +264,21 @@ namespace ExperimentsOnSortAlgorithms
 				Console.WriteLine(arr2[z] + " ");
 			}*/
 			SortAlgorithms sa = new SortAlgorithms();
-			sa.DefineProof(100, ORDEN_ASCENDENTE, "4", ORDEN_POR_BURBUJA);
-			Console.ReadKey();
+            Console.WriteLine("Ingrese 1 si su RAM es de 4GB");
+            Console.WriteLine("Ingrese 2 si su RAM es de 8GB");
+            int ram = int.Parse(Console.ReadLine());
+            if (ram == 1)
+            {
+                sa.repetitions("4GB");
+            }
+            else {
+                sa.repetitions("8GB");
+            }
+            Console.WriteLine("Terminado");
+            Console.ReadKey();
+
+
+        
 		}
 	}
 
